@@ -9,7 +9,7 @@ Projeto que visa padronizar a comunicação com alguns bancos de dados.
 pip install pymaxdb
 ```
 ## Utilização
-A comunicação é realizada através da instanciação da classe ***conexao()***, que recebe em um de seus parâmetros o nome do banco de dados que se deseja conectar. O parmêtro ***nome_conexao*** recebe nomes pré-definidos, que podem ser: Postgres, (conexão PostgreSQL), DBMakerODBC (necessário criação prévia de uma conexão DBMaker ODBC), SQLServerODBC (conexão SQL Server ODBC) e Firebird (conexão Firebird).
+A comunicação é realizada através da instanciação da classe ***conexao***, que recebe em um de seus parâmetros o nome do banco de dados que se deseja conectar. O parâmetro ***nome_conexao*** recebe nomes pré-definidos, que podem ser: Postgres, (conexão PostgreSQL), DBMakerODBC (necessário criação prévia de uma conexão DBMaker ODBC), SQLServerODBC (conexão SQL Server ODBC) e Firebird (conexão Firebird).
 
 ```python
 from pymaxdb import conexao
@@ -26,7 +26,7 @@ try:
     
     # Conexão Firebird
     # con = conexao(nome_conexao='firebird', host='127.0.0.1', port='3050', db='/caminho_database/nome_database.fdb', usr='usuário', pwd='senha')
-    
+
     con.executar('insert into nome_database values(1)')
     
     con.efetivar() # commit
@@ -41,3 +41,8 @@ try:
 except Exception as e:    
     print(e)
 ```
+
+O pacote também possui mais algumas classes e funções utilitárias:
+
+- conexao_dbmaker
+  - Permite controlar a quantidade de tentativas de conexão ao DBMaker no caso da quantdade de conexções permitidas exceder.
