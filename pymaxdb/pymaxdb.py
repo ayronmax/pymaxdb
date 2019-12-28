@@ -93,8 +93,8 @@ class configurador(object):
         return dict(self.__config_parser[sessao])[item_sessao]
 
 class conexao_dbmaker(object):
-    def __init__(self, tentantivas_conexao=None, dsn=None, usr=None, pwd=None):
-        self.__tentativas_conexao = tentantivas_conexao
+    def __init__(self, tentativas_conexao=None, dsn=None, usr=None, pwd=None):
+        self.__tentativas_conexao = tentativas_conexao
         self.__dsn = dsn
         self.__usr = usr
         self.__pwd = pwd
@@ -108,12 +108,21 @@ class conexao_dbmaker(object):
                 self.__conn_dbmaker = conexao(nome_conexao="DBMakerOdbc", db=self.__dsn, usr=self.__usr, pwd=self.__pwd)
                 tentativas = self.__tentativas_conexao
             except Exception as e:
-                if ("number of transactions exceeds" and "number of connections exceeds") in str(e).lower():
+                if ("number of transactions exceeds" or "number of connections exceeds") in str(e).lower():
                     sleep(5)                    
                 else:
                     tentativas = self.__tentativas_conexao
-                    raise                                                
-
+                
+                if tentativas == self.__tentativas_conexao:
+                   raise
+                
             tentativas = tentativas + 1
 
         return self.__conn_dbmaker
+
+if __name__ == "__main__":
+    try:
+        conn_dbmaker = conexao_dbmaker(tentativas_conexao=3, dsn='teste', usr='teste', pwd='CUIDADO')
+        conn_dbmaker.conectar()
+    except Exception as e:
+        print(e)

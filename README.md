@@ -54,13 +54,20 @@ O pacote também possui mais algumas classes e funções utilitárias:
 from pymaxdb import conexao_dbmaker
 
 try:
-    conn_dbmaker = conexao_dbmaker(tentativas_conexao=10, db='nome_dsn', usr='usuário', pwd='senha')
+    conn_dbmaker = conexao_dbmaker(tentativas_conexao=3, dsn='nome_dsn', usr='usuário', pwd='senha')
 except Exception as e:
     print(e)
 ```
 
 - ***remove_ace***
-  - Recebe uma string e retorna apenas letras, números e espaços.
+  - Recebe uma string e retorna apenas letras sem acentuação, números e espaços.
+
+```python
+from pymaxdb import remove_ace
+
+rem_ace = remove_ace("Composto so de espaço, e/ou tabulação e/ou quebra de linha & números 1, 2 e 3")
+print(rem_ace)
+```
 
 - ***configurador***
   - Recebe o caminho completo de um arquivo de configuração separado por sessões do tipo chave e valor.
