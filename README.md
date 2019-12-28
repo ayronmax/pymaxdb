@@ -29,11 +29,15 @@ try:
 
     # Retirar comentário de uma das conexões acima para exutar exemplo abaixo 
     con.executar('insert into nome_database values(1)')
+    
     con.efetivar() # commit
+
     rs = con.consultar('select * from nome_database')
     print(rs)
+
     proximo_registro = con.proxima_chave('nome_database', 'campo_chave')
     print(proximo_registro)
+
     con.fechar() # close connection       
 except Exception as e:    
     print(e)
