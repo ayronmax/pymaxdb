@@ -86,11 +86,15 @@ chave2 = valor2
 from pymaxdb import configurador
 
 config = configurador(file_config='config/config.cfg')
+
 dic_config = config.get_sessao('config2') # retorna um dicionário com itens da sessão config2
 print(dic_config)
+
 valor_config = config.get_item_sessao('config1', 'chave2') # retorna o valor da chave2
 print(valor_config)
+
 config.set_file_config('config/config2.cfg') # define outro arquivo de configuração
+
 arquivo_config = config.get_file_config() # retona o nome do arquivo de configuração
 print(arquivo_config)
 ```
