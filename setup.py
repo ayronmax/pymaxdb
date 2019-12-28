@@ -28,8 +28,8 @@ setup(
         'Topic :: Database'
     ],
     install_requires = [
-        'psycopg2',
+        'psycopg2==2.8.4',
         'pyodbc==4.0.27',
-        'fdb'
+        'fdb==2.0.1'
     ]    
 )
