@@ -12,22 +12,21 @@ pip install pymaxdb
 A comunicação é realizada através da instanciação da classe ***conexao()***, que recebe em um de seus parâmetros o nome do banco de dados que se deseja conectar. O parmêtro ***nome_conexao*** recebe nomes pré-definidos, que podem ser: Postgres, (conexão PostgreSQL), DBMakerODBC (necessário criação prévia de uma conexão DBMaker ODBC), SQLServerODBC (conexão SQL Server ODBC) e Firebird (conexão Firebird).
 
 ```python
-import pymaxdb
+from pymaxdb import conexao
 
 try:
     # Conexão PostgreSQL
-    # con = pymaxdb.conexao(nome_conexao='postgres', host='127.0.0.1', port='5432', db='nome_database', usr='usuário', pwd='senha')
+    con = conexao(nome_conexao='postgres', host='127.0.0.1', port='5432', db='nome_database', usr='usuário', pwd='senha')
 
     # Conexão DBMaker ODBC
-    # con = pymaxdb.conexao(nome_conexao='dbmakerodbc', db='nome_dsn', usr='usuário', pwd='senha')  
+    # con = conexao(nome_conexao='dbmakerodbc', db='nome_dsn', usr='usuário', pwd='senha')  
     
     # Conexão SQL Server ODBC
-    # con = pymaxdb.conexao(nome_conexao='sqlserverodbc', db='nome_dsn', usr='usuário', pwd='senha')
+    # con = conexao(nome_conexao='sqlserverodbc', db='nome_dsn', usr='usuário', pwd='senha')
     
     # Conexão Firebird
     # con = conexao(nome_conexao='firebird', host='127.0.0.1', port='3050', db='/caminho_database/nome_database.fdb', usr='usuário', pwd='senha')
-
-    # Retirar comentário de uma das conexões acima para executar exemplo abaixo 
+    
     con.executar('insert into nome_database values(1)')
     
     con.efetivar() # commit

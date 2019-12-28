@@ -9,7 +9,7 @@ setup(
     author = 'Alexinaldo Costa',
     author_email = 'ayronmax@gmail.com',
     packages = find_packages(),
-    description = 'Projeto com o intuito de facilitar a comunicação com alguns bancos de dados.',
+    description = 'Projeto que visa padronizar a comunicação com alguns bancos de dados',
     long_description = long_description,
     long_description_content_type = "text/markdown",
     url = 'https://github.com/ayronmax/pymaxdb',
