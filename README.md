@@ -48,9 +48,20 @@ except Exception as e:
 O pacote também possui mais algumas classes e funções utilitárias:
 
 - ***conexao_dbmaker***
-  - Permite controlar a quantidade de tentativas de conexão ao DBMaker no caso da quantidade de conexões permitidas exceder.
+  - Permite controlar a quantidade de tentativas de conexão ao DBMaker no caso do número de conexões permitidas exceder.
 
 - ***remove_ace***
   - Recebe uma string e retorna apenas letras, números e espaços.
 
 - ***configurador***
+  - Recebe o caminho completo de um arquivo de configuração separado por sessões do tipo chave e valor.
+
+```sh
+[config1]
+chave1 = valor1
+chave2 = valor2
+
+[config2]
+chave1 = valor1
+chave2 = valor2
+```
