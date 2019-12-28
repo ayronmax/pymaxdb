@@ -21,13 +21,13 @@ try:
     # Conexão DBMaker ODBC
     # con = pymaxdb.conexao(nome_conexao='dbmakerodbc', db='nome_dsn', usr='usuário', pwd='senha')  
     
-    # Conexão SQLServer ODBC
+    # Conexão SQL Server ODBC
     # con = pymaxdb.conexao(nome_conexao='sqlserverodbc', db='nome_dsn', usr='usuário', pwd='senha')
     
     # Conexão Firebird
     # con = conexao(nome_conexao='firebird', host='127.0.0.1', port='3050', db='/caminho_database/nome_database.fdb', usr='usuário', pwd='senha')
 
-    # Retirar comentário de uma das conexões acima para exutar exemplo abaixo 
+    # Retirar comentário de uma das conexões acima para executar exemplo abaixo 
     con.executar('insert into nome_database values(1)')
     
     con.efetivar() # commit
