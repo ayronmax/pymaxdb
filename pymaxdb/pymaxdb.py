@@ -64,7 +64,7 @@ class conexao(object):
         self._cur.close()
         self._conn.close()
 
-def remover_ace(palavra):
+def remove_ace(palavra):
     # Unicode normalize transforma um caracter em seu equivalente em latin.
     nfkd = unicodedata.normalize('NFKD', palavra)
     palavra_sem_acento = u"".join([c for c in nfkd if not unicodedata.combining(c)])
