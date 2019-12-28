@@ -111,7 +111,8 @@ class conexao_dbmaker(object):
                 if ("number of transactions exceeds" and "number of connections exceeds") in str(e).lower():
                     sleep(5)                    
                 else:
-                    tentativas = self.__tentativas_conexao                        
+                    tentativas = self.__tentativas_conexao
+                    raise                                                
 
             tentativas = tentativas + 1
 

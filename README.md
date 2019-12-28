@@ -50,6 +50,15 @@ O pacote também possui mais algumas classes e funções utilitárias:
 - ***conexao_dbmaker***
   - Permite controlar a quantidade de tentativas de conexão ao DBMaker no caso do número de conexões permitidas exceder.
 
+```python
+from pymaxdb import conexao_dbmaker
+
+try:
+    conn_dbmaker = conexao_dbmaker(tentativas_conexao=10, db='nome_dsn', usr='usuário', pwd='senha')
+except Exception as e:
+    print(e)
+```
+
 - ***remove_ace***
   - Recebe uma string e retorna apenas letras, números e espaços.
 
