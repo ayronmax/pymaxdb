@@ -44,5 +44,5 @@ except Exception as e:
 
 O pacote também possui mais algumas classes e funções utilitárias:
 
-- conexao_dbmaker
+- ***conexao_dbmaker***
   - Permite controlar a quantidade de tentativas de conexão ao DBMaker no caso da quantdade de conexções permitidas exceder.
