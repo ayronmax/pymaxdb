@@ -118,11 +118,4 @@ class conexao_dbmaker(object):
                 
             tentativas = tentativas + 1
 
-        return self.__conn_dbmaker
-
-if __name__ == "__main__":
-    try:
-        conn_dbmaker = conexao_dbmaker(tentativas_conexao=3, dsn='teste', usr='teste', pwd='CUIDADO')
-        conn_dbmaker.conectar()
-    except Exception as e:
-        print(e)
+        return self.__conn_dbmaker    
