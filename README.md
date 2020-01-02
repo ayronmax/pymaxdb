@@ -3,8 +3,8 @@ Projeto que visa padronizar a comunicação com alguns bancos de dados.
 
 ## Objetivo
 - Padronizar a conexão com bancos de dados distintos; 
-- Utilizar métodos padronizados para realizar operações no bancos de dados;
-- Melhorar controle de operações que envolvem atualizações no banco de dados.
+- Utilizar métodos padronizados para realizar operações em bancos de dados;
+- Melhorar controle de operações que envolvem atualizações em bancos de dados.
 
 ## Instalação
 ```sh
