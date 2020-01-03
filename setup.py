@@ -5,7 +5,7 @@ with open(file="README.md",  mode="r", encoding='utf-8') as fh:
 
 setup(
     name = 'pymaxdb',
-    version = '1.0.0',
+    version = '1.0.1',
     author = 'Alexinaldo Costa',
     author_email = 'ayronmax@gmail.com',
     packages = find_packages(),

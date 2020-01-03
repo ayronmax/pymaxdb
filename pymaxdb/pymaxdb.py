@@ -98,9 +98,25 @@ class conexao_dbmaker(object):
         self.__dsn = dsn
         self.__usr = usr
         self.__pwd = pwd
-        self.__conn_dbmaker = None
 
-    def conectar(self):
+        if (tentativas_conexao and dsn and usr and pwd) != None:
+            self.__conn_dbmaker = self.conectar(tentativas_conexao=tentativas_conexao, dsn=dsn, usr=usr, pwd=pwd)
+        else:
+            self.__conn_dbmaker = None
+
+    def conectar(self, tentativas_conexao=None, dsn=None, usr=None, pwd=None):
+        if self.__tentativas_conexao == None:
+            self.__tentativas_conexao = tentativas_conexao
+        
+        if self.__dsn == None:
+            self.__dsn = dsn
+
+        if self.__usr == None:
+            self.__usr = usr
+        
+        if self.__pwd == None:
+            self.__pwd = pwd
+
         tentativas = 1
 
         while tentativas <= self.__tentativas_conexao: # quantidade de tentativas a cada 5 segundos em caso de "number of transactions exceeds" ou "number of connections exceeds"
@@ -118,4 +134,5 @@ class conexao_dbmaker(object):
                 
             tentativas = tentativas + 1
 
-        return self.__conn_dbmaker    
+        return self.__conn_dbmaker
+

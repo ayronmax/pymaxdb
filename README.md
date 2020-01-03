@@ -54,7 +54,9 @@ O pacote também possui mais algumas classes e funções utilitárias:
 from pymaxdb import conexao_dbmaker
 
 try:
-    conn_dbmaker = conexao_dbmaker(tentativas_conexao=3, dsn='nome_dsn', usr='usuário', pwd='senha')
+    con_dbmaker = conexao_dbmaker(tentativas_conexao=3, dsn='nome_dsn', usr='usuário', pwd='senha').conectar()
+    print(con_dbmaker.consultar('select * from nome_database'))
+    con_dbmaker.fechar()
 except Exception as e:
     print(e)
 ```
