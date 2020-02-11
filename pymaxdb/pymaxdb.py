@@ -63,6 +63,9 @@ class conexao(object):
     def fechar(self):
         self._cur.close()
         self._conn.close()
+    
+    def cursor(self):
+        return self._cur
 
 def remove_ace(palavra):
     # Unicode normalize transforma um caracter em seu equivalente em latin.
