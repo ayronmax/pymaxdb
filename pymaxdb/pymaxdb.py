@@ -14,41 +14,41 @@ class conexao(object):
             if port is None:
                 port = "5432"
                 
-            self._conn = psycopg2.connect(host=host, port=port, database=db, user=usr, password=pwd)
-            self._conn.autocommit = False
-            self._cur = self._conn.cursor()
+            self.__conn = psycopg2.connect(host=host, port=port, database=db, user=usr, password=pwd)
+            self.__conn.autocommit = False
+            self.__cur = self.__conn.cursor()
         elif nome_conexao == "dbmakerodbc":
             #self._conn = pyodbc.connect("DSN=%s" %db)
-            self._conn = pyodbc.connect(f'DSN={db};UID={usr};PWD={pwd}')
-            self._conn.autocommit = False
-            self._cur = self._conn.cursor()
+            self.__conn = pyodbc.connect(f'DSN={db};UID={usr};PWD={pwd}')
+            self.__conn.autocommit = False
+            self.__cur = self._conn.cursor()
         elif nome_conexao == "sqlserverodbc":
-            self._conn = pyodbc.connect(f'DSN={db};UID={usr};PWD={pwd}')
-            self._conn.autocommit = False
-            self._cur = self._conn.cursor()
+            self.__conn = pyodbc.connect(f'DSN={db};UID={usr};PWD={pwd}')
+            self.__conn.autocommit = False
+            self.__cur = self.__conn.cursor()
         elif nome_conexao == "firebird":
             if port is None:
                 port = "3050"            
             
-            self._conn = fdb.connect(dsn=f'{host}/{port}:{db}', user=f'{usr}', password=f'{pwd}')
-            self._conn.autocommit = False
-            self._cur = self._conn.cursor()
+            self.__conn = fdb.connect(dsn=f'{host}/{port}:{db}', user=f'{usr}', password=f'{pwd}')
+            self.__conn.autocommit = False
+            self.__cur = self.__conn.cursor()
         else:            
-            self._conn = None
-            self._cur = None
+            self.__conn = None
+            self.__cur = None
 
     def executar(self, sql, args=None):        
         if args is None:
-            self._cur.execute(sql)
+            self.__cur.execute(sql)
         else:
-            self._cur.execute(sql, args)
+            self.__cur.execute(sql, args)
         
         return None
     
     def consultar(self, sql):
         rs = None
-        self._cur.execute(sql)
-        rs = self._cur.fetchall()              
+        self.__cur.execute(sql)
+        rs = self.__cur.fetchall()              
         return rs
     
     def proxima_chave(self, tabela, chave):
@@ -58,14 +58,20 @@ class conexao(object):
         return pk + 1
         
     def efetivar(self):
-        self._conn.commit()
+        self.__conn.commit()
         
     def fechar(self):
-        self._cur.close()
-        self._conn.close()
+        self.__cur.close()
+        self.__conn.close()
     
     def cursor(self):
-        return self._cur
+        return self.__cur
+    
+    def fechar_cursor(self):
+        self.__cur.close()
+    
+    def fechar_conexao(self):
+        self.__conn.close()
 
 def remove_ace(palavra):
     # Unicode normalize transforma um caracter em seu equivalente em latin.
