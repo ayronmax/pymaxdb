@@ -18,10 +18,10 @@ class conexao(object):
             self.__conn.autocommit = False
             self.__cur = self.__conn.cursor()
         elif nome_conexao == "dbmakerodbc":
-            #self._conn = pyodbc.connect("DSN=%s" %db)
+            #self.__conn = pyodbc.connect("DSN=%s" %db)
             self.__conn = pyodbc.connect(f'DSN={db};UID={usr};PWD={pwd}')
             self.__conn.autocommit = False
-            self.__cur = self._conn.cursor()
+            self.__cur = self.__conn.cursor()
         elif nome_conexao == "sqlserverodbc":
             self.__conn = pyodbc.connect(f'DSN={db};UID={usr};PWD={pwd}')
             self.__conn.autocommit = False
