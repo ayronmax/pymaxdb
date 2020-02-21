@@ -1,10 +1,6 @@
 import psycopg2
 import pyodbc
-import unicodedata
-import re
-from configparser import ConfigParser
 import fdb
-from time import sleep
 
 class conexao(object):
     def __init__(self, nome_conexao=None, host=None, port=None, db=None, usr=None, pwd=None):
@@ -73,34 +69,6 @@ class conexao(object):
     def fechar_conexao(self):
         self.__conn.close()
 
-def remove_ace(palavra):
-    # Unicode normalize transforma um caracter em seu equivalente em latin.
-    nfkd = unicodedata.normalize('NFKD', palavra)
-    palavra_sem_acento = u"".join([c for c in nfkd if not unicodedata.combining(c)])
-
-    # Usa expressão regular para retornar a palavra apenas com números, letras e espaço
-    return re.sub('[^a-zA-Z0-9 \/\\\-]', '', palavra_sem_acento)
-
-class configurador(object):
-    def __init__(self, file_config = "config/config.cfg"):
-       self.file_config = file_config
-       self.__config_parser = ConfigParser()
-       self.__config_parser.read(file_config)
-
-    def get_file_config(self):
-        return self.file_config
-
-    def set_file_config(self, file_config):
-        self.file_config = file_config
-        self.__config_parser = ConfigParser()
-        self.__config_parser.read(file_config)
-
-    def get_sessao(self, sessao):
-        return dict(self.__config_parser[sessao])
-
-    def get_item_sessao(self, sessao, item_sessao):
-        return dict(self.__config_parser[sessao])[item_sessao]
-
 class conexao_dbmaker(object):
     def __init__(self, tentativas_conexao=None, dsn=None, usr=None, pwd=None):
         self.__tentativas_conexao = tentativas_conexao
@@ -144,4 +112,3 @@ class conexao_dbmaker(object):
             tentativas = tentativas + 1
 
         return self.__conn_dbmaker
-
