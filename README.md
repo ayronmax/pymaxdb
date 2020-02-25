@@ -40,6 +40,7 @@ try:
         proximo_registro = con.proxima_chave('nome_database', 'campo_chave')
         print(proximo_registro)
     except Exception as e:
+        con.rollback()
         print(e)
     finally:
         con.fechar() # close connection       
