@@ -68,6 +68,9 @@ class conexao(object):
     
     def fechar_conexao(self):
         self.__conn.close()
+    
+    def rollback(self):
+        self.__conn.rollback()
 
 class conexao_dbmaker(object):
     def __init__(self, tentativas_conexao=None, dsn=None, usr=None, pwd=None):
