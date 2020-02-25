@@ -62,6 +62,7 @@ try:
     try:
         print(con_dbmaker.consultar('select * from nome_database'))        
     except Exception as e:
+        con.rollback()
         print(e)
     finally:
         con_dbmaker.fechar()
