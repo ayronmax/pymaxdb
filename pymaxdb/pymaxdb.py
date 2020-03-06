@@ -1,6 +1,7 @@
 import psycopg2
 import pyodbc
 import fdb
+from time import sleep
 
 class conexao(object):
     def __init__(self, nome_conexao=None, host=None, port=None, db=None, usr=None, pwd=None):
