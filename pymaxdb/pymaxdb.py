@@ -105,7 +105,7 @@ class conexao_dbmaker(object):
                 self.__conn_dbmaker = conexao(nome_conexao="DBMakerOdbc", db=self.__dsn, usr=self.__usr, pwd=self.__pwd)
                 tentativas = self.__tentativas_conexao
             except Exception as e:
-                if ("number of transactions exceeds" or "number of connections exceeds") in str(e).lower():
+                if (str(e).lower() == "number of transactions exceeds") or (str(e).lower() == "number of connections exceeds"):
                     sleep(5)                    
                 else:
                     tentativas = self.__tentativas_conexao
