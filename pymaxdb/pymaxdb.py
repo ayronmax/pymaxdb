@@ -22,7 +22,7 @@ class conexao(object):
         elif nome_conexao == "sqlserverodbc":
             if not usr:
                 self.__conn = pyodbc.connect(f'DSN={db}')
-            else
+            else:
                 self.__conn = pyodbc.connect(f'DSN={db};UID={usr};PWD={pwd}')
             
             self.__conn.autocommit = False
