@@ -97,21 +97,27 @@ class conexao_dbmaker(object):
         if self.__pwd == None:
             self.__pwd = pwd
 
-        tentativas = 1
+        tentativas = 1 if self.__tentativas_conexao > 0 else 0
 
-        while tentativas <= self.__tentativas_conexao: # quantidade de tentativas a cada 5 segundos em caso de "number of transactions exceeds" ou "number of connections exceeds"
+        while tentativas <= self.__tentativas_conexao: # quantidade de tentativas a cada 5 segundos
             try:
                 self.__conn_dbmaker = conexao(nome_conexao="DBMakerOdbc", db=self.__dsn, usr=self.__usr, pwd=self.__pwd)
-                tentativas = self.__tentativas_conexao
+                tentativas = self.__tentativas_conexao if tentativas > 0 else 1
             except Exception as e:
-                if (str(e).lower() == "number of transactions exceeds") or (str(e).lower() == "number of connections exceeds"):
+                if ("number of transactions exceeds" in str(e).lower()) or
+                   ("number of connections exceeds" in str(e).lower()) or 
+                   ("user licenses exceeded" in str(e).lower())
                     sleep(5)                    
                 else:
-                    tentativas = self.__tentativas_conexao
-                
+                    if tentativas > 0:                    
+                        tentativas = self.__tentativas_conexao
+                    else:
+                        tentativas = 1
+                        raise
+                                
                 if tentativas == self.__tentativas_conexao:
-                   raise
-                
-            tentativas = tentativas + 1
+                    raise
+                            
+            tentativas = (tentativas + 1) if tentativas > 0
 
         return self.__conn_dbmaker
