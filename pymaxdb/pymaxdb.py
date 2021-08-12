@@ -106,7 +106,7 @@ class conexao_dbmaker(object):
             except Exception as e:
                 if ("number of transactions exceeds" in str(e).lower()) or \
                    ("number of connections exceeds" in str(e).lower()) or \
-                   ("user licenses exceeded" in str(e).lower())
+                   ("user licenses exceeded" in str(e).lower()):
                     sleep(5)                    
                 else:
                     if tentativas > 0:                    
@@ -118,6 +118,7 @@ class conexao_dbmaker(object):
                 if tentativas == self.__tentativas_conexao:
                     raise
                             
-            tentativas = (tentativas + 1) if tentativas > 0
+            if tentativas > 0:
+                tentativas = (tentativas + 1)
 
         return self.__conn_dbmaker
