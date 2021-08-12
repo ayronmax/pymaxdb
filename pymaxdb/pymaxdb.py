@@ -115,7 +115,7 @@ class conexao_dbmaker(object):
                         tentativas = 1
                         raise
                                 
-                if tentativas == self.__tentativas_conexao:
+                if tentativas == self.__tentativas_conexao and tentativas > 0:                    
                     raise
                             
             if tentativas > 0:
